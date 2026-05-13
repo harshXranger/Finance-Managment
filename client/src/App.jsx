@@ -1,0 +1,27 @@
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
+import AuthPage from "./pages/AuthPage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
+
+const App = () => {
+  const { token } = useAuth();
+
+  return (
+    <Routes>
+      <Route path="/" element={token ? <Navigate to="/dashboard" replace /> : <AuthPage />} />
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <DashboardPage />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
+  );
+};
+
+export default App;
+

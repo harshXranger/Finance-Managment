@@ -1,254 +1,102 @@
-WealthWave
-Project Title
-WealthWave - Smart Personal Finance Manager
+#	🌊 WealthWave: Smart Personal Finance Manager
+WealthWave is a high-performance, full-stack web application designed to help users take control of their financial life. Move away from messy spreadsheets and enjoy a visual, automated way to track your wealth.
 
-Project Overview
-WealthWave is a full-stack web application developed to help users manage personal finances in a smart, simple, and visual way.
+#	📌 Table of Contents
+*	Features
+*	Problem Statement
+*	Tech Stack
+*	System Architecture
+*	Getting Started
+*	API Reference
+*	Database Schema
+*	Future Roadmap
 
-The system helps users:
 
-track income and expenses
-manage monthly budgets
-view spending insights using charts
-create recurring transactions
-export reports
-receive notifications
-get simple AI-based financial suggestions
-This project is built for users who want a clean and easy method to understand where their money is going.
+#	✨ Features
+##	WealthWave isn't just a ledger; it's a financial command center:
+*	📊 Dynamic Dashboard: At-a-glance view of total balance, savings rate, and recent activity.
+*	🛡️ Secure Auth: JWT-based sessions with bcrypt encryption and strict Gmail-only validation.
+*	💰 Smart Budgeting: Set monthly limits and receive automated over-budget warnings.
+*	🔄 Recurring Transactions: Automate your bills and subscriptions.
+*	📈 Visual Insights: Beautifully rendered charts (via Chart.js) for category-wise spending.
+*	📑 Data Export: Download your data in CSV or PDF formats for offline review.
+*	🤖 AI Assistant: Get financial advice through a built-in AI module (OpenAI supported).
 
-Problem Statement
-Many people still manage their finances using notebooks, memory, or Excel sheets.
 
-This creates problems such as:
+#	❓ Problem Statement
+*	Traditional finance management via notebooks or Excel leads to:
+*	Information Silos: Scattered records.
+*	Invisibility: Overspending without realizing it.
+*	Complexity: Manual calculations are prone to error.
 
-unstructured expense tracking
-missing financial records
-overspending without realizing it
-difficulty in understanding raw numbers
-lack of visual reports
-too much manual calculation work
-WealthWave solves these problems by giving users one centralized platform to record, monitor, and analyze financial activity.
+##	**WealthWave** centralizes your activity, providing clarity through visualization.
 
-Objectives
-The main objectives of this project are:
+🛠 Tech Stack
+| Layer | Technology |
+| :--- | :--- |
+| **Frontend** | React (Vite), Tailwind CSS, Chart.js |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB (NoSQL) |
+| **Auth** | JWT (JSON Web Tokens), Bcrypt |
+| **Exports** | PDFKit / CSV-Writer |
 
-to build a secure personal finance management system
-to make expense and income tracking simple
-to help users control spending with budget planning
-to provide clear graphical insights
-to support recurring financial activities
-to generate useful reports and exports
-Target Users
-students
-working professionals
-beginners in personal finance
-Technology Stack
-Frontend: React + Vite
-Backend: Node.js + Express
-Database: MongoDB
-Authentication: JWT + bcrypt
-Charts: Chart.js
-System Architecture
-Frontend (React)
-      ↓
-Backend API (Node.js + Express)
-      ↓
-Database (MongoDB)
-Modules Implemented
-1. Authentication Module
-user signup
-user login
-JWT-based authentication
-password encryption using bcrypt
-2. Validation Module
-Validation added in both frontend and backend:
 
-only @gmail.com email addresses are allowed
-password must be at least 8 characters
-password must include: uppercase letter lowercase letter number special character
-3. Dashboard Module
-total balance
-total income
-total expenses
-savings rate
-recent transactions
-4. Transaction Module
-add income
-add expense
-category support
-date support
-note support
-delete transaction
-5. Budget Module
-set monthly budgets
-track amount spent
-show remaining amount
-show over-budget warning
-6. Reporting Module
-category-wise expense chart
-monthly trend chart
-income vs expense chart
-7. Recurring Transaction Module
-create recurring plans
-auto-generate transactions from recurring entries
-8. Export Module
-export transactions as CSV
-export summary as PDF
-9. Notification Module
-budget alert notifications
-recurring transaction update notifications
-10. AI Assistant Module
-answer finance-related questions
-local insight mode available without API key
-optional OpenAI-based response support
-Features Completed So Far
-secure login and signup
-Gmail-only email validation
-strong password validation
-transaction management
-budget management
-dashboard analytics
-report charts
-recurring transaction support
-CSV export
-PDF export
-notifications
-AI assistant
-Output Screens / Expected Output
-The application provides:
-
-login page
-signup page
-dashboard page
-transaction entry section
-budget section
-recurring transaction section
-reports and charts section
-notifications section
-AI assistant section
-How To Run The Project
-1. Start MongoDB
-Make sure MongoDB is running on your system.
-
-Default local database:
-
-mongodb://127.0.0.1:27017/wealthwave
-2. Backend Setup
-Open terminal in the server folder:
-
+#	📐 System Architecture
+##	The application follows a classic MERN decoupling:
+####	Code snippet
+```text
+graph TD
+    A[Frontend: React + Vite] -->|REST API| B[Backend: Node.js + Express]
+    B -->|Mongoose| C[Database: MongoDB]
+    B -->|External API| D[OpenAI / Local AI]
+```
+#🚀 Getting Started
+###	1. Prerequisites
+*	MongoDB installed and running locally (port 27017)
+*	Node.js (v16+)2.
+###	2.Backend Setup
+```text
 cd server
-Create .env file from .env.example
-
-Example:
-
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/wealthwave
-JWT_SECRET=wealthwave-local-dev-secret
-CLIENT_URL=http://localhost:5173
-OPENAI_API_KEY=
-OPENAI_MODEL=
-Install dependencies and start backend:
-
 npm install
+# Create a .env file based on .env.example
 npm run dev
-Backend runs on:
-
-http://localhost:5000
-Health check:
-
-http://localhost:5000/api/health
-Note: If http://localhost:5000/ shows Route not found: /, that is normal because the backend is an API server and not a normal webpage.
-
-3. Frontend Setup
-Open terminal in the client folder:
-
+```
+###	3. Frontend Setup
+```text
 cd client
-Create .env file from .env.example
-
-Example:
-
-VITE_API_URL=http://localhost:5000/api
-Install dependencies and start frontend:
-
 npm install
+# Create a .env file with VITE_API_URL=http://localhost:5000/api
 npm run dev
-Frontend runs on:
-
-http://localhost:5173
-How To Check The Database
-Database name:
-
-wealthwave
-Collections used:
-
-users
-transactions
-budgets
-recurringtransactions
-notifications
-Option 1: MongoDB Compass
-open MongoDB Compass
-connect to mongodb://127.0.0.1:27017
-open database wealthwave
-check the collections
-Option 2: Mongo Shell
-mongosh
-use wealthwave
-show collections
-db.users.find().pretty()
-db.transactions.find().pretty()
-db.budgets.find().pretty()
-db.recurringtransactions.find().pretty()
-db.notifications.find().pretty()
-Main API Routes
+```
+#	📡 API Reference
 Authentication
-POST /api/auth/signup
-POST /api/auth/login
-GET /api/auth/me
-Dashboard
-GET /api/dashboard/summary
-Transactions
-GET /api/transactions
-POST /api/transactions
-PUT /api/transactions/:id
-DELETE /api/transactions/:id
-Budgets
-GET /api/budgets
-POST /api/budgets
-Reports
-GET /api/reports/overview
-GET /api/reports/export/transactions.csv
-Recurring Transactions
-GET /api/recurring
-POST /api/recurring
-Notifications
-GET /api/notifications
-PATCH /api/notifications/:id/read
-Assistant
-POST /api/assistant/chat
-Current Status
-The project is currently working locally with:
+|	Method	|	Endpoint	|	Description	|
+| :--- | :--- |:--- | 
+|	**POST**	|	/api/auth/signup	|	Register a new user (@gmail only)|
+|	**POST**	|	/api/auth/login		|	Login and receive JWT|
 
-React frontend
-Express backend
-MongoDB database
-authentication and validation
-dashboard and reports
-transactions and budgets
-recurring entries
-CSV/PDF export
-notifications
-AI assistant
-Future Scope
-edit transaction feature in UI
-advanced filters by date and category
-better notification controls
-stronger admin/testing support
-deployment on Vercel and Render
-real OpenAI integration using API key
-Conclusion
-WealthWave is a practical and user-friendly personal finance management system.
+#	Transactions & Reporting
+|Method|Endpoint|Description|
+| :--- | :--- |:--- | 
+|GET	|/api/transactions|	Fetch all user transactions|
+|POST|/api/transactions|Create a new entry|
+|GET|/api/reports/overview|Get data for charts|
+|GET|/api/reports/export/transactions.csv|Download CSV report|
 
-It helps users record, analyze, and improve financial habits through structured data entry, charts, budgeting, recurring plans, exports, and assistant support.
 
-This project can be further extended into a more advanced financial planning platform in the future.
+#	🗄 Database Schema
+####	WealthWave uses five main collections:
+*	**Users:** Profiles and encrypted credentials.
+*	**Transactions:** History of all money flow.
+*	**Budgets:** User-defined limits per month.
+*	**RecurringTransactions:** Blueprints for automated entries.
+*	**Notifications:** System alerts and budget warnings.
+
+#	🔮 Future Roadmap
+*	[ ] Advanced Filtering: Filter by date ranges and custom categories.
+*	[ ] Cloud Deployment: CI/CD integration for Vercel (Frontend) and Render (Backend).
+*	[ ] Admin Dashboard: High-level overview for platform management.
+*	[ ] Enhanced AI: Predictive spending analysis.
+
+#	🤝 Conclusion
+###	WealthWave aims to bridge the gap between "earning" and "understanding." Whether you are a student or a professional, this tool provides the structure needed for a healthier financial future.

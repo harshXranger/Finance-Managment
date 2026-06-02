@@ -22,7 +22,9 @@ const buildSnapshot = async (userId) => {
     return acc;
   }, {});
 
-  const topCategory = Object.entries(spendingByCategory).sort((a, b) => b[1] - a[1])[0];
+  const topCategory = Object.entries(spendingByCategory).sort(
+    (a, b) => b[1] - a[1],
+  )[0];
 
   return {
     balance,
@@ -30,7 +32,9 @@ const buildSnapshot = async (userId) => {
     totalExpenses,
     budgets,
     recentTransactions: transactions.slice(0, 8),
-    topSpendingCategory: topCategory ? { category: topCategory[0], amount: topCategory[1] } : null,
+    topSpendingCategory: topCategory
+      ? { category: topCategory[0], amount: topCategory[1] }
+      : null,
   };
 };
 
@@ -117,4 +121,3 @@ const askFinanceAssistant = async (userId, message) => {
 };
 
 export { askFinanceAssistant, buildSnapshot };
-

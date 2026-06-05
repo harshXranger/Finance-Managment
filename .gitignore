@@ -4,4 +4,4 @@ dist
 coverage
 .DS_Store
 npm-debug.log*
-
+mongodb+srv://wealthwave_user:VRWgJ7R8Y6SjfHCP@finance.h4srbpn.mongodb.net/?appName=Finance
